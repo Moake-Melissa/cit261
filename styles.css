@@ -1,0 +1,22 @@
+#home table{
+    border-collapse: collapse;
+} 
+
+#home tr th{
+    font-weight:bold;
+}
+
+#home tr td, tr th {
+    border: 1px solid black;
+    padding: 3px 10px;
+    word-wrap: break-word;
+}
+
+#home tr td:first-child {
+    width: 40%;
+}
+
+#home tr td:nth-child(2) {
+    width: 15%;
+    text-align: center;
+}

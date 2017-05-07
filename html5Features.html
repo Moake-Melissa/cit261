@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>HTML5 Options</title>
+        <script type="text/javascript" src="main.js"></script>
+    </head>
+    <body>
+        <a href="index.php">Back to Topics</a>
+        <br>
+        <h1>HTML5 Tags - Video, Audio, and Canvas</h1>
+        <div class="left" style="display:inline-block">
+        <div>Here is an example of using each of the above features of HTML5:</div>
+        <br>
+        <h3>Here is a video of my daughter being silly while eating.</h3>
+        <video controls width="230" poster="media/html5poster.JPG" style="margin-left: 90px;">
+            <source src="media/html5Video.mp4" type="video/mp4"/>
+            <!-- This object is for older browsers -->
+            <object>
+                <embed src="media/html5Video.mp4" type="applications/x-shockwave-flash" allowfullscreen="false" allowscriptaccess="always" />
+            </object>
+            You must have HTML5 to view this video.</video>
+        </div>
+        <div class="right" style="display:inline-block; float: right; margin-top: 36px; padding-right: 150px;">
+            <h3>Here is an audio file of my husband's version of our engagement story:</h3>
+            <audio controls>
+                <source src="media/Engagement.mp3" type="audio/mpeg" />
+            </audio>
+            <br><br><br><br><hr><br><br>
+            <h3>Here is a canvas example using a radial gradient and some text inside.</h3>
+            <canvas id="firstCanvas" width="400" height="200"></canvas>
+        </div>
+    </body>  
+</html>
