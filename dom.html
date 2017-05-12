@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DOM Manipulation</title>
+        <style>th {text-align:left} #newInput td{border-top:2px solid black; padding-top:10px} tr:nth-last-child(2) td {padding-bottom: 10px;}</style>
+    </head>
+    <body>
+        <a href="index.php">Back to Topics</a>
+        <br>
+        <h1>DOM Manipulation</h1> <h2>Using createElement, appendChild, insertBefore, removeChild, etc.</h2>
+        <div>Here is an example of using each of the above features of the DOM:</div>
+        
+        <table style="border-collapse: collapse;">
+            <thead><tr><th>First Name</th><th>Last Name</th><th></th></tr></thead>
+            <tbody id="tableBody">
+                <tr><td>Melissa</td><td>Moake</td><td><img src="media/edit-icon.png" onclick="editARow(this)" alt="edit icon"/><img src="media/delete-icon.png" onclick="deleteARow(this)" alt="delete icon"/></td></tr>
+                <tr><td>Kenny</td><td>Moake</td><td><img src="media/edit-icon.png" onclick="editARow(this)" alt="edit icon"/><img src="media/delete-icon.png" onclick="deleteARow(this)" alt="delete icon"/></td></tr>
+                <tr id="newInput"><td><input id="firstName" name="firstName" /></td><td><input id="lastName" name="lastName" /></td><td><button onclick="addARow()">Add</button></td></tr>
+            </tbody>
+        </table>
+       
+        <script>
+        function addARow(){
+            var firstName = document.getElementById("firstName");
+            var lastName = document.getElementById("lastName");
+
+            if (firstName.value == "" || lastName.value == ""){
+            }
+            else{
+                // Create Row
+                var newRow = document.createElement("tr");
+
+                // Create first name cell and append text
+                var newCell = document.createElement("td");
+                var fnameText = document.createTextNode(firstName.value);
+                newCell.appendChild(fnameText);
+                newRow.appendChild(newCell);
+
+                // Create last name cell and append text
+                var newCell2 = document.createElement("td");
+                var lnameText = document.createTextNode(lastName.value);
+                newCell2.appendChild(lnameText);
+                newRow.appendChild(newCell2);
+
+                // Create edit and remove icon image and set their attributes
+                var newCell3 = document.createElement("td");
+                var eimage = document.createElement("img");
+                eimage.setAttribute("src", "media/edit-icon.png");
+                eimage.setAttribute("onclick", "editARow(this)");
+                eimage.setAttribute("alt", "edit icon");
+                newCell3.appendChild(eimage);
+                
+                var dimage = document.createElement("img");
+                dimage.setAttribute("src", "media/delete-icon.png");
+                dimage.setAttribute("onclick", "deleteARow(this)");
+                dimage.setAttribute("alt", "delete icon");
+                newCell3.appendChild(dimage);
+                newRow.appendChild(newCell3);
+
+                // Find the table body element
+                // Append the new row before the new input row
+                var tableBody = document.getElementById("tableBody");
+                var newInputRow = document.getElementById("newInput");
+                tableBody.insertBefore(newRow, newInputRow);
+
+                // Reset Input Values to Blank
+                firstName.value = "";
+                lastName.value = "";
+            }
+        }
+        
+        function deleteARow(icon){
+            var row = icon.parentNode.parentNode;
+            row.parentNode.removeChild(row);
+        }
+        
+        function editARow(icon){
+            var row = icon.parentNode.parentNode;
+            var firstNameNode = row.firstChild;
+            var firstNameText = firstNameNode.textContent;
+            var lastNameNode = row.getElementsByTagName("td")[1];
+            var lastNameText = lastNameNode.textContent;
+            firstNameNode.innerHTML = '<input class="firstNameEdit" name="firstNameEdit" value="' + firstNameText + '"/>';
+            lastNameNode.innerHTML = '<input class="lastNameEdit" name="lastNameEdit" value="' + lastNameText + '"/>';
+            icon.setAttribute("src", "media/save-icon.png");
+            icon.setAttribute("alt", "save icon");
+            icon.setAttribute("onclick", "saveARow(this)");
+        }
+        
+        function saveARow(icon){
+            var row = icon.parentNode.parentNode;
+            console.log(row);
+            var firstNameNode = row.getElementsByClassName("firstNameEdit")[0];
+            var firstNameText = firstNameNode.value;
+            var lastNameNode = row.getElementsByClassName("lastNameEdit")[0];
+            var lastNameText = lastNameNode.value;
+            if(firstNameText == "" || lastNameText == ""){
+            }
+            else{
+                firstNameNode.parentNode.innerHTML = firstNameText;
+                lastNameNode.parentNode.innerHTML = lastNameText;
+                icon.setAttribute("src", "media/edit-icon.png");
+                icon.setAttribute("alt", "edit icon");
+                icon.setAttribute("onclick", "editARow(this)");
+            }
+            
+        }
+    </script>
+    </body>
+</html>
