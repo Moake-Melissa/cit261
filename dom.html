@@ -2,20 +2,20 @@
 <html>
     <head>
         <title>DOM Manipulation</title>
-        <style>th {text-align:left} #newInput td{border-top:2px solid black; padding-top:10px} tr:nth-last-child(2) td {padding-bottom: 10px;}</style>
+        <style>th {text-align:left} #newInput td{border-top:2px solid black; padding-top:10px} tr:nth-last-child(2) td {padding-bottom: 10px;} td img:hover{cursor:pointer;}</style>
     </head>
     <body>
         <a href="index.php">Back to Topics</a>
         <br>
         <h1>DOM Manipulation</h1> <h2>Using createElement, appendChild, insertBefore, removeChild, etc.</h2>
-        <div>Here is an example of using each of the above features of the DOM:</div>
-        
+        <div>Here is an example of using each of the above features of the DOM <br> For fun, try adding a blank row or editing a row to have blank values and see what it does.</div>
+        <br>
         <table style="border-collapse: collapse;">
             <thead><tr><th>First Name</th><th>Last Name</th><th></th></tr></thead>
             <tbody id="tableBody">
                 <tr><td>Melissa</td><td>Moake</td><td><img src="media/edit-icon.png" onclick="editARow(this)" alt="edit icon"/><img src="media/delete-icon.png" onclick="deleteARow(this)" alt="delete icon"/></td></tr>
                 <tr><td>Kenny</td><td>Moake</td><td><img src="media/edit-icon.png" onclick="editARow(this)" alt="edit icon"/><img src="media/delete-icon.png" onclick="deleteARow(this)" alt="delete icon"/></td></tr>
-                <tr id="newInput"><td><input id="firstName" name="firstName" /></td><td><input id="lastName" name="lastName" /></td><td><button onclick="addARow()">Add</button></td></tr>
+                <tr id="newInput"><td><input id="firstName" name="firstName" onchange="ifEmpty(this)"/></td><td><input id="lastName" name="lastName" onchange="ifEmpty(this)"/></td><td><button onclick="addARow()">Add</button></td></tr>
             </tbody>
         </table>
        
@@ -25,6 +25,8 @@
             var lastName = document.getElementById("lastName");
 
             if (firstName.value == "" || lastName.value == ""){
+                ifEmpty(firstName);
+                ifEmpty(lastName);
             }
             else{
                 // Create Row
@@ -80,8 +82,8 @@
             var firstNameText = firstNameNode.textContent;
             var lastNameNode = row.getElementsByTagName("td")[1];
             var lastNameText = lastNameNode.textContent;
-            firstNameNode.innerHTML = '<input class="firstNameEdit" name="firstNameEdit" value="' + firstNameText + '"/>';
-            lastNameNode.innerHTML = '<input class="lastNameEdit" name="lastNameEdit" value="' + lastNameText + '"/>';
+            firstNameNode.innerHTML = '<input class="firstNameEdit" name="firstNameEdit" value="' + firstNameText + '" onchange="ifEmpty(this)"/>';
+            lastNameNode.innerHTML = '<input class="lastNameEdit" name="lastNameEdit" value="' + lastNameText + '" onchange="ifEmpty(this)"/>';
             icon.setAttribute("src", "media/save-icon.png");
             icon.setAttribute("alt", "save icon");
             icon.setAttribute("onclick", "saveARow(this)");
@@ -89,12 +91,13 @@
         
         function saveARow(icon){
             var row = icon.parentNode.parentNode;
-            console.log(row);
             var firstNameNode = row.getElementsByClassName("firstNameEdit")[0];
             var firstNameText = firstNameNode.value;
             var lastNameNode = row.getElementsByClassName("lastNameEdit")[0];
             var lastNameText = lastNameNode.value;
             if(firstNameText == "" || lastNameText == ""){
+                ifEmpty(firstNameNode);
+                ifEmpty(lastNameNode);
             }
             else{
                 firstNameNode.parentNode.innerHTML = firstNameText;
@@ -104,6 +107,17 @@
                 icon.setAttribute("onclick", "editARow(this)");
             }
             
+        }
+        
+        function ifEmpty(input){
+           
+            if(input.value == ""){
+                input.style.borderColor = "red";
+            }
+            else{
+                input.style.borderColor = "initial";
+            }
+                
         }
     </script>
     </body>

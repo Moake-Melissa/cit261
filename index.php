@@ -16,13 +16,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td><b>JavaScript</b> Loops, Conditional Statements, Functions, Variables, Parameters, Arrays, Associative Arrays</td><td>Not Submitted</td><td></td></tr>
+                        <tr><td><b>JavaScript</b> Loops, Conditional Statements, Functions, Variables, Parameters, Arrays, Associative Arrays</td><td>Not Submitted</td><td>My DOM example uses some of these features (variables, functions, conditionals).</td></tr>
                         <tr><td><b>JavaScript</b> - Object Creation, Functions, Properties, Methods</td><td>Not Submitted</td><td></td></tr>
                         <tr><td><b>JSON</b> Parse, Stringify</td><td>Not Submitted</td><td></td></tr>
                         <tr><td><b>AJAX</b> to Consume a JSON Web Service
 </td><td>Not Submitted</td><td></td></tr>
                         <tr><td><a href="advancedLocalStorage.html"><b>Local Storage</b> API, Storing and Retrieving Simple Data, Arrays, Associative Arrays, and Objects</a></td><td>Not Submitted</td><td></td></tr>
-                        <tr><td><a href="dom.html"><b>DOM</b> Manipulation Using createElement, appendChild, insertBefore, removeChild, etc.</a></td><td>Not Submitted</td><td></td></tr>
+                        <tr><td><a href="dom.html"><b>DOM</b> Manipulation Using createElement, appendChild, insertBefore, removeChild, etc.</a></td><td>Ready for Review</td><td>Ready for review on May 12th.</td></tr>
                         <tr><td>Manipulating <b>CSS</b> Class Properties <b>Using JavaScript</td><td>Not Submitted</td><td></td></tr>
                         <tr><td>Creating <b>CSS3</b> Transitions and Animations in CSS and <b>triggering</b> them with <b>JavaScript</b></td><td>Not Submitted</td><td></td></tr>
                         <tr><td><b>JavaScript Events</b> Including those for Mobile Devices ( Ex. onTouchBegin, onLoad, etc.) and Animation and Transition Events
