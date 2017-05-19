@@ -18,7 +18,7 @@
                     <tbody>
                         <tr><td><b>JavaScript</b> Loops, Conditional Statements, Functions, Variables, Parameters, Arrays, Associative Arrays</td><td>Not Submitted</td><td>My DOM example uses some of these features (variables, functions, conditionals).</td></tr>
                         <tr><td><b>JavaScript</b> - Object Creation, Functions, Properties, Methods</td><td>Not Submitted</td><td></td></tr>
-                        <tr><td><b>JSON</b> Parse, Stringify</td><td>Not Submitted</td><td></td></tr>
+                        <tr><td><a href='dom-json.html'><b>JSON</b> Parse, Stringify</a></td><td>Not Submitted</td><td>This covers DOM, Local Storage, JSON, and AJAX</td></tr>
                         <tr><td><b>AJAX</b> to Consume a JSON Web Service
 </td><td>Not Submitted</td><td></td></tr>
                         <tr><td><a href="advancedLocalStorage.html"><b>Local Storage</b> API, Storing and Retrieving Simple Data, Arrays, Associative Arrays, and Objects</a></td><td>Not Submitted</td><td></td></tr>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DOM Manipulation</title>
+        <style>th {text-align:left} #newInput td{border-top:2px solid black; padding-top:10px} tbody tr:last-child td{padding-bottom: 10px;} td img:hover{cursor:pointer;}</style>
+    </head>
+    <body>
+        <a href="index.php">Back to Topics</a>
+        <br>
+        <h1>JSON example</h1> <h2>Parse and Stringify</h2>
+        <div>Here is an example of using each of the above features of JSON using my DOM example.</div>
+        <br>
+        <table style="border-collapse: collapse;">
+            <thead><tr><th>First Name</th><th>Last Name</th><th></th></tr></thead>
+            <tbody id="tableBody">
+                <tr><td>Melissa</td><td>Moake</td><td><img src="media/edit-icon.png" onclick="editARow(this)" alt="edit icon"/><img src="media/delete-icon.png" onclick="deleteARow(this)" alt="delete icon"/></td></tr>
+                <tr><td>Kenny</td><td>Moake</td><td><img src="media/edit-icon.png" onclick="editARow(this)" alt="edit icon"/><img src="media/delete-icon.png" onclick="deleteARow(this)" alt="delete icon"/></td></tr>
+            </tbody>
+            <tfoot>
+                <tr id="newInput"><td><input id="firstName" name="firstName" onchange="ifEmpty(this)"/></td><td><input id="lastName" name="lastName" onchange="ifEmpty(this)"/></td><td><button onclick="addARow()">Add</button></td></tr>
+            </tfoot>
+        </table>
+        <br>
+        <button onclick="convertToJSON()">Convert to JSON and Add to Local Storage</button>
+        <br><br>
+        <div id="jsonResults"></div><br><br>
+        <div id="localResults"></div>
+        <br><br>
+        <button onclick="viewLocal()">View Local Storage</button>&nbsp;&nbsp;<button onclick="loadFromLocalStorage()">Load from LocalStorage</button>
+        <br><br>
+        <div id="viewLocal"></div>
+        <br><br>
+        <button onclick="jsonFile('moakeFamily.json')">Get JSON File</button>&nbsp;&nbsp;<button onclick="loadFromFile('moakeFamily.json')">Load from JSON File</button>
+        <br><br>
+        <div id="jsonFile"></div>
+        <script>
+        function addARow(firstName = "", lastName = ""){
+            if(firstName === ""){
+                firstName = document.getElementById("firstName").value;
+            }
+            if(lastName === ""){
+                lastName = document.getElementById("lastName").value;
+            }
+            
+            if (firstName.value == "" || lastName.value == ""){
+                ifEmpty(firstName);
+                ifEmpty(lastName);
+            }
+            else{
+                // Create Row
+                var newRow = document.createElement("tr");
+
+                // Create first name cell and append text
+                var newCell = document.createElement("td");
+                var fnameText = document.createTextNode(firstName);
+                newCell.appendChild(fnameText);
+                newRow.appendChild(newCell);
+
+                // Create last name cell and append text
+                var newCell2 = document.createElement("td");
+                var lnameText = document.createTextNode(lastName);
+                newCell2.appendChild(lnameText);
+                newRow.appendChild(newCell2);
+
+                // Create edit and remove icon image and set their attributes
+                var newCell3 = document.createElement("td");
+                var eimage = document.createElement("img");
+                eimage.setAttribute("src", "media/edit-icon.png");
+                eimage.setAttribute("onclick", "editARow(this)");
+                eimage.setAttribute("alt", "edit icon");
+                newCell3.appendChild(eimage);
+                
+                var dimage = document.createElement("img");
+                dimage.setAttribute("src", "media/delete-icon.png");
+                dimage.setAttribute("onclick", "deleteARow(this)");
+                dimage.setAttribute("alt", "delete icon");
+                newCell3.appendChild(dimage);
+                newRow.appendChild(newCell3);
+
+                // Find the table body element
+                // Append the new row before the new input row
+                var tableBody = document.getElementById("tableBody");
+                //var newInputRow = document.getElementById("newInput");
+                tableBody.appendChild(newRow);
+
+                // Reset Input Values to Blank
+                firstName.value = "";
+                lastName.value = "";
+            }
+        }
+        
+        function deleteARow(icon){
+            var row = icon.parentNode.parentNode;
+            row.parentNode.removeChild(row);
+        }
+        
+        function editARow(icon){
+            var row = icon.parentNode.parentNode;
+            var firstNameNode = row.firstChild;
+            var firstNameText = firstNameNode.textContent;
+            var lastNameNode = row.getElementsByTagName("td")[1];
+            var lastNameText = lastNameNode.textContent;
+            firstNameNode.innerHTML = '<input class="firstNameEdit" name="firstNameEdit" value="' + firstNameText + '" onchange="ifEmpty(this)"/>';
+            lastNameNode.innerHTML = '<input class="lastNameEdit" name="lastNameEdit" value="' + lastNameText + '" onchange="ifEmpty(this)"/>';
+            icon.setAttribute("src", "media/save-icon.png");
+            icon.setAttribute("alt", "save icon");
+            icon.setAttribute("onclick", "saveARow(this)");
+        }
+        
+        function saveARow(icon){
+            var row = icon.parentNode.parentNode;
+            var firstNameNode = row.getElementsByClassName("firstNameEdit")[0];
+            var firstNameText = firstNameNode.value;
+            var lastNameNode = row.getElementsByClassName("lastNameEdit")[0];
+            var lastNameText = lastNameNode.value;
+            if(firstNameText == "" || lastNameText == ""){
+                ifEmpty(firstNameNode);
+                ifEmpty(lastNameNode);
+            }
+            else{
+                firstNameNode.parentNode.innerHTML = firstNameText;
+                lastNameNode.parentNode.innerHTML = lastNameText;
+                icon.setAttribute("src", "media/edit-icon.png");
+                icon.setAttribute("alt", "edit icon");
+                icon.setAttribute("onclick", "editARow(this)");
+            }
+            
+        }
+        
+        function ifEmpty(input){
+           
+            if(input.value == ""){
+                input.style.borderColor = "red";
+            }
+            else{
+                input.style.borderColor = "initial";
+            }
+                
+        }
+        
+        function convertToJSON(){
+            var tableBody = document.getElementsByTagName('tbody')[0];
+            var rows = tableBody.getElementsByTagName('tr');
+            var tablePeople = [];
+            for (var i=0; i < rows.length; i++){
+                var firstName = rows[i].getElementsByTagName('td')[0].innerHTML;
+                var lastName = rows[i].getElementsByTagName('td')[1].innerHTML;
+                tablePeople.push({"firstName" : firstName, "lastName": lastName});
+            }
+            var myJSON = JSON.stringify(tablePeople);
+            localStorage.setItem("tablePeople", myJSON);
+            
+            document.getElementById("jsonResults").innerHTML = "Information from json strinify:" + myJSON;
+            
+            var fromLocalStorage = localStorage.getItem("tablePeople");
+            var obj = JSON.parse(fromLocalStorage);
+            var people = [];
+            for (item in obj){
+                console.log(item);
+                people.push(obj[item].firstName + " " + obj[item].lastName);
+            }
+            document.getElementById("localResults").innerHTML = "From Local Storage: " + people;
+        }
+        
+        function viewLocal(){
+            var fromLocalStorage = localStorage.getItem("tablePeople");
+            var obj = JSON.parse(fromLocalStorage);
+            var people = [];
+            for (item in obj){
+                console.log(item);
+                people.push(obj[item].firstName + " " + obj[item].lastName);
+            }
+            document.getElementById("viewLocal").innerHTML = "Pulled from Local Storage: " + people;
+        }
+        
+        function jsonFile( url )
+        {
+                var srvrRequest = new XMLHttpRequest();
+                srvrRequest.onreadystatechange = function()
+                        {	
+                                if (srvrRequest.readyState == srvrRequest.DONE && srvrRequest.statusText == "OK")
+                                        document.getElementById( "jsonFile" ).innerHTML = srvrRequest.responseText;
+                        }
+                srvrRequest.open("GET", url, true);
+                srvrRequest.send();
+        }
+        
+        function loadFromLocalStorage(){
+            var fromLocalStorage = localStorage.getItem("tablePeople");
+            var obj = JSON.parse(fromLocalStorage);
+            document.getElementById("tableBody").innerHTML = "";
+            for (item in obj){
+                var firstName = obj[item].firstName;
+                var lastName = obj[item].lastName;
+                console.log(firstName);
+                console.log(lastName);
+                addARow(firstName, lastName);
+                
+            }
+        }
+        
+        function loadFromFile(url){
+            var srvrRequest = new XMLHttpRequest();
+                srvrRequest.onreadystatechange = function()
+                        {	
+                                if (srvrRequest.readyState == srvrRequest.DONE && srvrRequest.statusText == "OK"){
+                        
+                                var obj = JSON.parse(srvrRequest.responseText);
+                                document.getElementById("tableBody").innerHTML = "";
+                                for (item in obj){
+                                    var firstName = obj[item].firstName;
+                                    var lastName = obj[item].lastName;
+                                    console.log(firstName);
+                                    console.log(lastName);
+                                    addARow(firstName, lastName);
+                                }
+                            }
+                }
+                srvrRequest.open("GET", url, true);
+                srvrRequest.send();
+        }
+
+    </script>
+    </body>
+</html>
