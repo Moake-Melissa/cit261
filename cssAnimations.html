@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>CSS Animations</title>
+        <script type="text/javascript" src="main.js"></script>
+        <style>
+            h1{ margin-bottom:0;}
+            #circle {
+                width: 40px;
+                height: 40px;
+                -moz-border-radius: 50px;
+                border-radius: 50px;
+                background-color: red;
+                position: relative;
+                -webkit-animation-name: example; /* Safari 4.0 - 8.0 */
+                -webkit-animation-duration: 4s; /* Safari 4.0 - 8.0 */
+                animation-name: example;
+                animation-duration: 5s;
+                animation-iteration-count: infinite;
+                animation-direction: alternate;
+            }
+
+            /* Safari 4.0 - 8.0 */
+            @-webkit-keyframes example {
+                0%   {background-color:red; left:0px; top:0px;}
+                10%  {background-color:yellow; left:100px; top:0px;}
+                20%  {background-color:red; left:100px; top:100px;}
+                30%  {background-color:yellow; left: 200px; top:100px;}
+                40%  {background-color:red; left:200px; top:200px;}
+                50%  {background-color:yellow; left:300px; top:200px;}
+                60%  {background-color:red; left:300px; top:300px;}
+                70%  {background-color:yellow; left:400px; top:300px;}
+                80%  {background-color:red; left:400px; top:400px;}
+                90%  {background-color:yellow; left:500px; top:400px;}
+                100% {background-color:red; left:500px; top:500px;}
+            }
+
+            /* Standard syntax */
+            @keyframes example {
+                0%   {background-color:red; left:0px; top:0px;}
+                10%  {background-color:yellow; left:100px; top:0px;}
+                20%  {background-color:red; left:100px; top:100px;}
+                30%  {background-color:yellow; left: 200px; top:100px;}
+                40%  {background-color:red; left:200px; top:200px;}
+                50%  {background-color:yellow; left:300px; top:200px;}
+                60%  {background-color:red; left:300px; top:300px;}
+                70%  {background-color:yellow; left:400px; top:300px;}
+                80%  {background-color:red; left:400px; top:400px;}
+                90%  {background-color:yellow; left:500px; top:400px;}
+                100% {background-color:red; left:500px; top:500px;}
+            }
+</style>
+        
+    </head>
+    <body>
+        <a href="index.php">Back to Topics</a>
+        <br>
+        <h1>CSS Animations</h1><span>Designing, Defining, and Triggering CSS3 Animations without Custom Libraries 
+        </span><br>
+        <div>Here is a basic example of CSS3 Animations: (the example started from <a href="https://www.w3schools.com/css/tryit.asp?filename=trycss3_animation3">here</a> but then I tweeked and played with it.</div>
+        <div id="circle"></div>
+    </body>  
+</html>
