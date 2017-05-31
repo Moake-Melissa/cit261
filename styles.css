@@ -27,11 +27,14 @@
 
 /* CSS Page Styles*/
 h1{margin-bottom:0;}
-button#makeGame {
-    font-size: 1em;
+#options{
     text-align: center;
     margin: 10px auto;
-    display: block;
+}
+button#makeGame {
+    font-size: 1em;
+    display: inline-block;
+    margin-right: 20px;
 }
 .card {
     width: 150px;

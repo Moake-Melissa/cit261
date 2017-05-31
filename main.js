@@ -1,5 +1,5 @@
 
-
+var counter;
 
 
 function canvasGradient(){
@@ -42,10 +42,11 @@ function shuffleArray(array) {
 function cardFlip(card){
     var active = document.getElementsByClassName("flipped");
     var found = document.getElementsByClassName("found");
-    console.log(active);
     if (active.length == "2"){
         var first = active[0];
         var second = active[1];
+        counter++;
+        document.getElementById("counter").innerHTML = counter;
         if (first.firstChild.firstChild.innerHTML === second.firstChild.firstChild.innerHTML){
             first.firstChild.setAttribute("style","background-color:green");
             second.firstChild.setAttribute("style","background-color: green");
@@ -74,6 +75,8 @@ function cardFlip(card){
 }
 
 function makeGame(){
+   counter = 0;
+   document.getElementById("counter").innerHTML = counter;
    var numbers = [];
    for(var i=0; i<9; i++){
        var num = Math.floor((Math.random() * 100) + 1);
@@ -120,5 +123,3 @@ function clickListener(card) {
     c.contains("flipped") === true ? c.remove("flipped") : c.add("flipped");
   cardFlip(card);
 }
-
-
