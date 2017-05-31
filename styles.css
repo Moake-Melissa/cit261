@@ -20,3 +20,140 @@
     width: 15%;
     text-align: center;
 }
+
+
+
+
+
+/* CSS Page Styles*/
+h1{margin-bottom:0;}
+button#makeGame {
+    font-size: 1em;
+    text-align: center;
+    margin: 10px auto;
+    display: block;
+}
+.card {
+    width: 150px;
+    height: 176px;
+    margin: 5px;
+    position: relative;
+    font-size: 4em;
+    display: table;
+    cursor: pointer;
+}
+
+#game.stacked{
+    width: 150px;
+    height: 184px;
+    overflow: hidden;
+    -webkit-transition: width 2s, height 2s ease 2s;
+    transition: width 2s, height 2s ease 2s;
+}
+
+div#game {
+    display: flex;
+    flex-wrap: wrap;
+    width: 1013px;
+    text-align: center;
+    margin: 0 auto;
+    -webkit-transition: width 2s, height 2s ease 2s;
+    transition: width 2s, height 2s ease 2s;
+
+}
+
+#game.restack{
+    width: 161px;
+    height: 184px;
+    overflow: hidden;
+    -webkit-transition: width 2s, height 2s ease 2s;
+    transition: width 2s, height 2s ease 2s;
+}
+
+.found{
+    color:white;
+    -webkit-transform: rotateY(0);
+            transform: rotateY(0);
+}
+
+
+/* Styles started from http://callmenick.com/post/css-transitions-transforms-animations-flipping-card. Changes some now but want to give credit.*/
+  .card .front,
+  .card .back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .card .front,
+  .card .back {
+    -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+    -webkit-transition: -webkit-transform 0.3s;
+            transition: transform 0.3s;
+    border-radius: 10px;
+  }
+
+  .card .front {
+    background-color: black;
+    color:white;
+    -webkit-transform: rotateY(-180deg);
+            transform: rotateY(-180deg);
+  }
+
+  .card .back {
+    background: url("back-pattern.svg");
+    background-color:lightblue;
+    /*border:1px solid black;*/
+  }
+
+  .card .back:hover{
+      background-color: cadetblue;
+  }
+
+  .card.flipped .front, .card.found .front {
+      -webkit-transform: rotateY(0);
+            transform: rotateY(0);
+  }
+
+  .card.flipped .back, .card.found .back {
+    -webkit-transform: rotateY(-180deg);
+            transform: rotateY(-180deg);
+  }
+
+  .front span {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        height: 20px;
+        color: #fff;
+        line-height: 20px;
+  }
+  .card.found .front{
+    animation: wiggle .3s linear alternate;
+  }
+
+  @keyframes wiggle
+    {
+        0%   {
+          transform: rotate(20deg);
+        }
+        20%  {
+          transform: rotate(-20deg);
+        }
+        50% {
+            transform: rotate(20deg);
+        }
+        80% {
+            transform: rotate(-20deg);
+        }
+        100%{
+           transform: rotate(0deg);
+        }
+    }
+ 

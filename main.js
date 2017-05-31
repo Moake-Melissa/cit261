@@ -1,6 +1,4 @@
-window.onload = function(){
-  canvasGradient();  
-};
+
 
 
 
@@ -21,6 +19,106 @@ function canvasGradient(){
     context.fillStyle = "black";
     context.font = "110px Arial";
     context.strokeText("CIT 261", 15, 150);
+}
+
+
+
+/* CSS Animations/Transitions/Transformation code*/
+/**
+* Randomize array element order in-place.
+* Using Durstenfeld shuffle algorithm.
+* https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+*/
+function shuffleArray(array) {
+   for (var i = array.length - 1; i > 0; i--) {
+       var j = Math.floor(Math.random() * (i + 1));
+       var temp = array[i];
+       array[i] = array[j];
+       array[j] = temp;
+   }
+   return array;
+}
+
+function cardFlip(card){
+    var active = document.getElementsByClassName("flipped");
+    var found = document.getElementsByClassName("found");
+    console.log(active);
+    if (active.length == "2"){
+        var first = active[0];
+        var second = active[1];
+        if (first.firstChild.firstChild.innerHTML === second.firstChild.firstChild.innerHTML){
+            first.firstChild.setAttribute("style","background-color:green");
+            second.firstChild.setAttribute("style","background-color: green");
+            first.classList.add("found");
+            first.classList.remove("flipped");
+            second.classList.add("found");
+            second.classList.remove("flipped");
+
+            if(found.length == 18){
+                setTimeout(function(){
+                if (confirm("Congrats! \n\n You have found all the matches! \n\nWould you like to start a new game?")){
+                    makeGame();
+                }
+                },200);
+            } 
+        }
+        else{
+            setTimeout(function(){
+                 first.classList.remove("flipped");
+                 },500);
+            setTimeout(function(){
+                 second.classList.remove("flipped");
+            },500);
+        }
+    }
+}
+
+function makeGame(){
+   var numbers = [];
+   for(var i=0; i<9; i++){
+       var num = Math.floor((Math.random() * 100) + 1);
+       //push twice so there will be a match
+       numbers.push(num);
+       numbers.push(num);
+   }
+   var shuffled = shuffleArray(numbers);
+   var game = document.getElementById("game");
+   if(game.innerHTML !== ""){
+      setTimeout(function(){
+            game.classList.add("restack");
+        }, 500);
+   }
+   game.innerHTML = "";
+
+   for (var i = 0; i <= shuffled.length - 1; i++) {
+       var div = document.createElement("div");
+            div.setAttribute("class", "card");
+            div.setAttribute("onclick", "clickListener(this)");
+       var front = document.createElement("div");
+            front.setAttribute("class", "front");
+       var span = document.createElement("span");
+       var spanText = document.createTextNode(shuffled[i]);
+            span.appendChild(spanText);
+            front.appendChild(span);
+       var back = document.createElement("div");
+            back.setAttribute("class", "back");
+            div.appendChild(front);
+            div.appendChild(back);
+            game.appendChild(div);
+   }
+   setTimeout(function(){
+        game.classList.remove("restack");
+    }, 3000);
+   setTimeout(function(){
+        game.classList.remove("stacked");
+    }, 500);
+}
+
+//Using some code from http://callmenick.com/post/css-transitions-transforms-animations-flipping-card
+function clickListener(card) {
+    var c = card.classList;
+    c.contains("flipped") === true ? c.remove("flipped") : c.add("flipped");
+  cardFlip(card);
 }
 
 
