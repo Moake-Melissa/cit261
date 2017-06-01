@@ -40,6 +40,7 @@ function shuffleArray(array) {
 }
 
 function cardFlip(card){
+    card.classList.add("flipped");
     var active = document.getElementsByClassName("flipped");
     var found = document.getElementsByClassName("found");
     if (active.length == "2"){
@@ -96,7 +97,7 @@ function makeGame(){
    for (var i = 0; i <= shuffled.length - 1; i++) {
        var div = document.createElement("div");
             div.setAttribute("class", "card");
-            div.setAttribute("onclick", "clickListener(this)");
+            div.setAttribute("onclick", "cardFlip(this)");
        var front = document.createElement("div");
             front.setAttribute("class", "front");
        var span = document.createElement("span");
@@ -115,11 +116,4 @@ function makeGame(){
    setTimeout(function(){
         game.classList.remove("stacked");
     }, 500);
-}
-
-//Using some code from http://callmenick.com/post/css-transitions-transforms-animations-flipping-card
-function clickListener(card) {
-    var c = card.classList;
-    c.contains("flipped") === true ? c.remove("flipped") : c.add("flipped");
-  cardFlip(card);
 }

@@ -75,8 +75,6 @@ div#game {
 
 .found{
     color:white;
-    -webkit-transform: rotateY(0);
-            transform: rotateY(0);
 }
 
 
