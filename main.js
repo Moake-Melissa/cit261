@@ -1,4 +1,4 @@
-
+var best;
 var counter;
 
 
@@ -40,7 +40,9 @@ function shuffleArray(array) {
 }
 
 function cardFlip(card){
-    card.classList.add("flipped");
+    if (card.classList.contains("found") == false){
+        card.classList.add("flipped");
+    }
     var active = document.getElementsByClassName("flipped");
     var found = document.getElementsByClassName("found");
     if (active.length == "2"){
@@ -57,8 +59,14 @@ function cardFlip(card){
             second.classList.remove("flipped");
 
             if(found.length == 18){
+                if (counter < best || best === 0){
+                    localStorage.setItem("bestGuess", counter);
+                    document.getElementById("best").innerHTML = counter;
+                    best = counter;
+                }
+                
                 setTimeout(function(){
-                if (confirm("Congrats! \n\n You have found all the matches! \n\nWould you like to start a new game?")){
+                if (confirm("Congrats!\n\nYou have found all the matches!\n\nWould you like to start a new game?")){
                     makeGame();
                 }
                 },200);

@@ -7,7 +7,6 @@ and open the template in the editor.
 <html>
     <head>
         <title>CSS Animations, Transitions, and Transformations</title>
-        <script type="text/javascript" src="main.js"></script>
         <link rel="stylesheet" href="styles.css">
     </head>
     <body>
@@ -17,8 +16,23 @@ and open the template in the editor.
         </span><br>
         <div>Here is a fun matching game I put together to use each of the three different css types.</div>
     <div id="options">
-        <button id="makeGame" onclick="makeGame();">Create new game</button><span>Number of guesses: <span id="counter"></span></span>
+        <button id="makeGame" onclick="makeGame();">Create new game</button><span>Number of guesses: <span id="counter"></span></span>&nbsp;<span> Best guess: <span id="best"></span></span>
     </div>
         <div id="game" class="stacked"></div>
+        <script type="text/javascript" src="main.js"></script>
+        <script>
+            window.onload = function(){
+                if (localStorage.getItem("bestGuess") === "" || localStorage.getItem("bestGuess") === null){
+                    best = 0;
+                    document.getElementById("best").innerHTML = best;
+                }
+                else{
+                    best_str = localStorage.getItem("bestGuess");
+                    best = parseInt(best_str);
+                    document.getElementById("best").innerHTML = best;
+                }
+            };
+        </script>
     </body>
+   
 </html>
