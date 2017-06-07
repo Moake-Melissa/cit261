@@ -1,0 +1,18 @@
+[
+	{
+		"imageURL":"back-pattern.svg",
+		"imageClass":"myCard"
+	},
+	{
+		"imageURL":"back-pattern2.svg",
+		"imageClass":"myCard2"
+	},
+	{
+		"imageURL":"cardBack_meghan.svg",
+		"imageClass":"megCard"
+	},
+	{
+		"imageURL":"cardBack2_meghan.svg",
+		"imageClass":"megCard2"
+	}
+]

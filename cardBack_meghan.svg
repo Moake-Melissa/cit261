@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink= "http://www.w3.org/1999/xlink" version="1.1" baseProfile="full">
+    <title>SVG Card Back</title>
+	<!-- define pattern -->
+	<defs>
+		<pattern id="cardpatterntwo" patternUnits="userSpaceOnUse" 
+	  x="0" y="0" width="30" height="30">
+                <rect x="0" y="0" width="30" height="30" 
+                fill="#ffc2dc" stroke="black" />
+                <rect x="0" y="0" width="25" height="25" 
+                fill="#ffd1bb" stroke="black" />
+                <rect x="0" y="0" width="20" height="20" 
+                fill="#e1ffed" stroke="black" />
+                <line x1="20" y1="20" x2="200" y2="200" stroke="black" />
+                <circle cx="-1" cy="-1" r="10" stroke="black" stroke-width="1" fill="#ffffb3" />
+	  </pattern>
+  </defs>
+	<rect fill="url(#cardpatterntwo)" width="150" height="176"   
+			stroke="black" />
+</svg>

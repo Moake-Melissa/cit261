@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink= "http://www.w3.org/1999/xlink" version="1.1" baseProfile="full">
+    <title>SVG Card Back</title>
+    <defs>
+      <pattern id="pattern1" patternUnits="userSpaceOnUse" x="0" y="0" width="25" height="25">
+        
+        <rect x="4" y="9" width="22" rx="2" ry="2" height="25" fill="darkgreen"/> 
+        <circle cx="8" cy="8" r="5" fill="yellow" />
+          <polygon points="14,4,0,35,23,25" fill="saddlebrown"/>
+      </pattern>
+    </defs>
+
+    <!-- use pattern in the card -->
+  <rect x="0" y="0" width="150" rx="10" ry="10" height="176" fill="url(#pattern1)" class="rectangle" /> 
+</svg>

@@ -103,15 +103,17 @@ div#game {
     -webkit-transform: rotateY(-180deg);
             transform: rotateY(-180deg);
   }
-
-  .card .back {
-    background: url("back-pattern.svg");
-    background-color:lightblue;
-    /*border:1px solid black;*/
+  
+  .card .back.myCard, .card .back.myCard2{
+      background-color:lightblue!important;
   }
 
-  .card .back:hover{
-      background-color: cadetblue;
+  .card .back.myCard:hover, .card .back.myCard2:hover{
+      background-color: cadetblue!important;
+  }
+  
+  .card .back.megCard:hover, .card .back.megCard2:hover {
+      border: 1px solid black;
   }
 
   .card.flipped .front, .card.found .front {

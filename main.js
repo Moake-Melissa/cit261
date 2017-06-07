@@ -95,13 +95,16 @@ function makeGame(){
    }
    var shuffled = shuffleArray(numbers);
    var game = document.getElementById("game");
+   if(game.classList.contains("restack") === false){
+       loadCardBacks("cardBacks.json");
+       console.log("no restack");
+   }
    if(game.innerHTML !== ""){
       setTimeout(function(){
             game.classList.add("restack");
         }, 500);
    }
    game.innerHTML = "";
-
    for (var i = 0; i <= shuffled.length - 1; i++) {
        var div = document.createElement("div");
             div.setAttribute("class", "card");
@@ -119,9 +122,38 @@ function makeGame(){
             game.appendChild(div);
    }
    setTimeout(function(){
+        /*if(game.classList.contains("restack") === true){
+            var restack = document.getElementsByClassName("restack");
+            console.log(restack);
+            restack.addEventListener("webkitTransitionEnd", loadCardBacks("cardBacks.json"));
+            restack.addEventListener("transitionEnd", loadCardBacks("cardBacks.json"));
+            console.log("restack");
+        }*/
         game.classList.remove("restack");
     }, 3000);
    setTimeout(function(){
         game.classList.remove("stacked");
     }, 500);
+}
+
+
+function loadCardBacks(url){
+    var srvrRequest = new XMLHttpRequest();
+        srvrRequest.onreadystatechange = function()
+        {	
+            if (srvrRequest.readyState === srvrRequest.DONE && srvrRequest.statusText === "OK"){
+                var obj = JSON.parse(srvrRequest.responseText);
+                var cards = document.getElementsByClassName("card");
+                var rand = obj[Math.floor(Math.random() * obj.length)];
+                    var imageURL = rand.imageURL;
+                    var imageClass = rand.imageClass;
+                    for (var i = 0; i < cards.length; i++) {
+                        cards[i].lastChild.style.background = "url('" + imageURL + "')";
+                        cards[i].lastChild.classList.add(imageClass);
+                        
+                    }
+            }
+        }
+        srvrRequest.open("GET", url, true);
+        srvrRequest.send();
 }
