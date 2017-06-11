@@ -57,8 +57,7 @@ button#makeGame {
 div#game {
     display: flex;
     flex-wrap: wrap;
-    max-width: 960px;
-    width: 100%;
+    width: 1013px;
     text-align: center;
     margin: 0 auto;
     -webkit-transition: width 2s, height 2s ease 2s;
