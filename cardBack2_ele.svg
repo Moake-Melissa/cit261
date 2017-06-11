@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" baseProfile="full">
+    <title>SVG Card Back</title>
+    <defs>
+      <pattern id="pattern2" patternUnits="userSpaceOnUse" x="0" y="0" width="50" height="50">
+        <rect width="50" height="50" fill="red"/>
+        <polygon points="25,0 50,25 25,50 0,25" fill="red" stroke="white" stroke-width="8"/>
+        <polyline points="5,5 20,20" fill="none" stroke="white" stroke-width="3"/>
+        <polyline points="30,20 45,5" fill="none" stroke="white" stroke-width="3"/>
+        <polyline points="5,45 20,30" fill="none" stroke="white" stroke-width="3"/>
+        <polyline points="30,30 45,45" fill="none" stroke="white" stroke-width="3"/>
+      </pattern>
+    </defs>
+    <rect x="2" y="2" rx="2.5" ry="2.5" width="146" height="172" fill="white" stroke="red" stroke-width="7.5"/>
+    <rect x="9.5" y="9.5" width="131" height="157" fill="url(#pattern2)"/>
+</svg>

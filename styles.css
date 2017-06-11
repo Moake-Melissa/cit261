@@ -47,17 +47,18 @@ button#makeGame {
 }
 
 #game.stacked{
-    width: 150px;
+    width: 161px;
     height: 184px;
     overflow: hidden;
-    -webkit-transition: width 2s, height 2s ease 2s;
-    transition: width 2s, height 2s ease 2s;
+    /*-webkit-transition: width 2s, height 2s ease 2s;
+    transition: width 2s, height 2s ease 2s;*/
 }
 
 div#game {
     display: flex;
     flex-wrap: wrap;
-    width: 1013px;
+    max-width: 960px;
+    width: 100%;
     text-align: center;
     margin: 0 auto;
     -webkit-transition: width 2s, height 2s ease 2s;
@@ -69,8 +70,8 @@ div#game {
     width: 161px;
     height: 184px;
     overflow: hidden;
-    -webkit-transition: width 2s, height 2s ease 2s;
-    transition: width 2s, height 2s ease 2s;
+    /*-webkit-transition: width 2s, height 2s ease 2s;
+    transition: width 2s, height 2s ease 2s;*/
 }
 
 .found{
@@ -104,16 +105,16 @@ div#game {
             transform: rotateY(-180deg);
   }
   
-  .card .back.myCard, .card .back.myCard2{
+  .back.myCard, .back.myCard2{
       background-color:lightblue!important;
   }
-
-  .card .back.myCard:hover, .card .back.myCard2:hover{
-      background-color: cadetblue!important;
+  .back.stephCard, .back.stephCard2{
+      background-color: whitesmoke!important;
   }
   
-  .card .back.megCard:hover, .card .back.megCard2:hover {
+  .back.eleCard:hover, .back.eleCard2:hover, .back.megCard:hover, .back.megCard2:hover, .back.stephCard:hover, .back.stephCard2:hover, .back.myCard:hover, .back.myCard2:hover {
       border: 1px solid black;
+      /*background-color: cadetblue!important;*/
   }
 
   .card.flipped .front, .card.found .front {

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" baseProfile="full">
+  <!-- define pattern -->
+  <defs>
+    <pattern id="mypattern2" patternUnits="userSpaceOnUse" x="0" y="0" width="20" height="20">
+      <svg height="140" width="500">
+        <ellipse cx="30" cy="10" rx="20" ry="10"  fill="#FFCC11"/>
+        <line x1="0" y1="0" x2="50" y2="5" stroke="gray" stroke-width="10"/>
+        <rect x="1" y="0" rx="5" ry="5" fill="black" width="5px" height="10px" /> 
+       </svg>
+    </pattern>
+  </defs>
+  <!-- use pattern in a rectangle -->
+  <rect x="0" y="0" rx="10" ry="10" width="150" height="176" fill="url(#mypattern2)"/>
+</svg>

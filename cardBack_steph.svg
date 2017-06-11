@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" baseProfile="full">
+  <!-- define pattern -->
+  <defs>
+    <pattern id="mypattern1" patternUnits="userSpaceOnUse" x="0" y="0" width="20" height="20">
+      <rect x="1" y="0" rx="10" ry="10" fill="gray" width="10px" height="20px" /> 
+      <line x1="0" y1="0" x2="200" y2="200" stroke="purple" stroke-width="3"/>
+      <circle cx="25" cy="10" r="9" stroke="pink" stroke-width="9" fill="white"/>
+    </pattern>
+  </defs>
+  <!-- use pattern in a rectangle -->
+  <rect x="0" y="0" rx="10" ry="10" width="150" height="176" fill="url(#mypattern1)"/>
+</svg>

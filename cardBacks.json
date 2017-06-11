@@ -14,5 +14,21 @@
 	{
 		"imageURL":"cardBack2_meghan.svg",
 		"imageClass":"megCard2"
+	},
+        {
+		"imageURL":"cardBack_ele.svg",
+		"imageClass":"eleCard"
+	},
+        {
+		"imageURL":"cardBack2_ele.svg",
+		"imageClass":"eleCard2"
+	},
+        {
+		"imageURL":"cardBack_steph.svg",
+		"imageClass":"stephCard"
+	},
+        {
+		"imageURL":"cardBack2_steph.svg",
+		"imageClass":"stephCard2"
 	}
 ]

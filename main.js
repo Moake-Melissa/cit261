@@ -95,10 +95,7 @@ function makeGame(){
    }
    var shuffled = shuffleArray(numbers);
    var game = document.getElementById("game");
-   if(game.classList.contains("restack") === false){
-       loadCardBacks("cardBacks.json");
-       console.log("no restack");
-   }
+   loadCardBacks("cardBacks.json");
    if(game.innerHTML !== ""){
       setTimeout(function(){
             game.classList.add("restack");

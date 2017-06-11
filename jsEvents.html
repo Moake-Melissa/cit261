@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>JavaScript Events</title>
+        
+        <style> 
+            /*Example from https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_transitionend*/
+            #myDIV {
+                width: 100px;
+                height: 100px;
+                background: red;
+                -webkit-transition: width 2s; /* For Safari 3.1 to 6.0 */
+                transition: width 2s;
+            }
+
+            #myDIV:hover {
+                width: 400px;
+            }
+        </style>
+    </head>
+    <body>
+        <a href="index.php">Back to Topics</a>
+        <br>
+        <h1>Standard JavaScript Events Including those for Mobile Devices (Ex. onTouchBegin, onLoad, etc.) and Animation and Transition EventsParse and Stringify</h1>
+        <div>Here are several examples of using each of the above features of JS Events.</div>
+        <br>
+        <span>On Change Example</span>
+        <select onchange="color(this)">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+        <br><br>
+        <span>On Focus and on Blur</span>
+        <input type="text" onfocus="this.style.borderColor = 'red';" onblur="this.style.borderColor = 'lightgreen'">
+        
+        <br><br>
+        
+        <span>Transition end example</span>
+        <div id="myDIV" onmouseover="this.innerHTML = ''; this.style.backgroundColor = 'red';" onmouseout="this.innerHTML = ''; this.style.backgroundColor = 'red';"></div>
+        
+        <br><br>
+        <span>OnClick example</span>
+        <button onclick="alert('You clicked the button!')">Click Me!</button>
+    <script>
+       function color(option){
+           if (option.value == 1){
+               option.style.color = "black";
+               option.style.backgroundColor = "yellow";
+           }
+           else if (option.value == 2){
+               option.style.color = "white";
+               option.style.backgroundColor = "green";
+           }
+           else if (option.value == 3){
+               option.style.color = "white";
+               option.style.backgroundColor = "red";
+           }
+       }
+       
+       //Example from https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_transitionend
+       // Code for Safari 3.1 to 6.0
+        document.getElementById("myDIV").addEventListener("webkitTransitionEnd", myFunction);
+
+        // Standard syntax
+        document.getElementById("myDIV").addEventListener("transitionend", myFunction);
+
+        function myFunction() {
+            this.innerHTML = "transitionend event occured - The transition has completed";
+            this.style.backgroundColor = "pink";
+        }
+    </script>
+    </body>
+</html>
