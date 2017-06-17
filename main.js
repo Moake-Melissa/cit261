@@ -1,6 +1,5 @@
 var best;
-var counter;
-
+var counter = 0;
 
 function canvasGradient(){
     var canvas = document.getElementById("firstCanvas");
@@ -85,6 +84,9 @@ function cardFlip(card){
 
 function makeGame(){
    counter = 0;
+   var transition = 0;
+   var backgroundImageURL;
+   var backgroundClass;
    document.getElementById("counter").innerHTML = counter;
    var numbers = [];
    for(var i=0; i<9; i++){
@@ -95,14 +97,24 @@ function makeGame(){
    }
    var shuffled = shuffleArray(numbers);
    var game = document.getElementById("game");
-   if(game.classList.contains("restack") === false){
+   if (game.innerHTML == ""){
+       game.classList.remove("stacked");
        loadCardBacks("cardBacks.json");
-       console.log("no restack");
    }
    if(game.innerHTML !== ""){
-      setTimeout(function(){
-            game.classList.add("restack");
-        }, 500);
+        backgroundImageURL = game.firstChild.lastChild.style.background;
+        backgroundClass = game.firstChild.lastChild.classList;
+        game.classList.add("restack");
+        game.firstChild.lastChild.style.background = backgroundImageURL;
+        if (game.classList.contains("restack") == true){
+            game.addEventListener("transitionend", function(event) {
+                transition++;
+                if (transition == 1){
+                    game.classList.remove("restack");
+                    loadCardBacks("cardBacks.json");
+                }
+            }, false);
+        }
    }
    game.innerHTML = "";
    for (var i = 0; i <= shuffled.length - 1; i++) {
@@ -116,24 +128,13 @@ function makeGame(){
             span.appendChild(spanText);
             front.appendChild(span);
        var back = document.createElement("div");
-            back.setAttribute("class", "back");
+            back.setAttribute("class", "back " + backgroundClass);
+            back.style.background = backgroundImageURL;
             div.appendChild(front);
             div.appendChild(back);
             game.appendChild(div);
+            
    }
-   setTimeout(function(){
-        /*if(game.classList.contains("restack") === true){
-            var restack = document.getElementsByClassName("restack");
-            console.log(restack);
-            restack.addEventListener("webkitTransitionEnd", loadCardBacks("cardBacks.json"));
-            restack.addEventListener("transitionEnd", loadCardBacks("cardBacks.json"));
-            console.log("restack");
-        }*/
-        game.classList.remove("restack");
-    }, 3000);
-   setTimeout(function(){
-        game.classList.remove("stacked");
-    }, 500);
 }
 
 
@@ -149,7 +150,7 @@ function loadCardBacks(url){
                     var imageClass = rand.imageClass;
                     for (var i = 0; i < cards.length; i++) {
                         cards[i].lastChild.style.background = "url('" + imageURL + "')";
-                        cards[i].lastChild.classList.add(imageClass);
+                        cards[i].lastChild.setAttribute("class", "back " + imageClass);
                         
                     }
             }
