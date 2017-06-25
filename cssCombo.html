@@ -16,21 +16,54 @@ and open the template in the editor.
         </span><br>
         <div>Here is a fun matching game I put together to use each of the three different css types.</div>
     <div id="options">
-        <button id="makeGame" onclick="makeGame();">Create new game</button><span>Number of guesses: <span id="counter"></span></span>&nbsp;<span> Best guess: <span id="best"></span></span>
+        <button id="makeGame" onclick="makeGame();">Create new game</button><span><b>Number of guesses:</b> <span id="counter">0</span></span>&nbsp;&nbsp;<b>Timer:</b> <span id="minutes">00</span>:<span id="seconds">00</span>&nbsp;&nbsp;<button id="button-stop">Pause</button><br><span><b>Best guess:</b> <span id="bestGuess"></span></span>&nbsp;&nbsp;<span><b>Best Time:</b> <span id="bestTime"></span></span>
     </div>
+        <div id="gamesPlayed"></div>
         <div id="game" class="stacked"></div>
         <script type="text/javascript" src="main.js"></script>
         <script>
             window.onload = function(){
                 if (localStorage.getItem("bestGuess") === "" || localStorage.getItem("bestGuess") === null){
                     best = 0;
-                    document.getElementById("best").innerHTML = best;
+                    document.getElementById("bestGuess").innerHTML = best;
                 }
                 else{
                     best_str = localStorage.getItem("bestGuess");
                     best = parseInt(best_str);
-                    document.getElementById("best").innerHTML = best;
+                    document.getElementById("bestGuess").innerHTML = best;
                 }
+                
+                if (localStorage.getItem("bestTime") === "" || localStorage.getItem("bestTime") === null){
+                    bestTime = "00:00";
+                    document.getElementById("bestTime").innerHTML = bestTime;
+                    localStorage.setItem("bestTime", bestTime);
+                }
+                else{
+                    bestTime = localStorage.getItem("bestTime");
+                    document.getElementById("bestTime").innerHTML = bestTime;
+                }
+                
+                 if (localStorage.getItem("games") === "" || localStorage.getItem("games") === null){
+                    games = [];
+                    var myJSON = JSON.stringify(games);
+                    localStorage.setItem("games", myJSON);
+                }
+                else{
+                    gamesString = localStorage.getItem("games");
+                    games = JSON.parse(gamesString);
+                    //document.getElementById("gamesPlayed").innerHTML = games;
+                }
+                
+                document.getElementsByClassName('card').onclick = function() {
+                    console.log("clicked");
+                    clearInterval(Interval);
+                    Interval = setInterval(startTimer, 1000);
+                   };
+
+                    buttonStop.onclick = function() {
+                      clearInterval(Interval);
+                      paused = true;
+                };
             };
         </script>
     </body>

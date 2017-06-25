@@ -1,5 +1,16 @@
-var best;
+var bestGuess;
+var bestTime;
+var games;
 var counter = 0;
+var seconds = 00;
+var minutes = 00;
+var appendMinutes = document.getElementById("minutes");
+var appendSeconds = document.getElementById("seconds");
+var buttonStart = document.getElementById('button-start');
+var buttonStop = document.getElementById('button-stop');
+var Interval ;
+var paused = true;
+                
 
 function canvasGradient(){
     var canvas = document.getElementById("firstCanvas");
@@ -39,6 +50,9 @@ function shuffleArray(array) {
 }
 
 function cardFlip(card){
+    if((minutes == 00 && seconds == 00) || paused){
+        beginTimer();
+    }
     if (card.classList.contains("found") == false){
         card.classList.add("flipped");
     }
@@ -58,11 +72,28 @@ function cardFlip(card){
             second.classList.remove("flipped");
 
             if(found.length == 18){
-                if (counter < best || best === 0){
-                    localStorage.setItem("bestGuess", counter);
-                    document.getElementById("best").innerHTML = counter;
-                    best = counter;
+                clearInterval(Interval);
+                time = bestTime.split(":");
+                console.log(time);
+                convertedBest = (parseInt(time[0])*60)+parseInt(time[1]);
+                console.log(convertedBest);
+                convertedTime = (minutes*60)+seconds;
+                console.log(convertedTime);
+                if (convertedTime < convertedBest || convertedBest === 0){
+                    bestTime = minutes + ":" + seconds;
+                    localStorage.setItem("bestTime", bestTime);
+                    document.getElementById("bestTime").innerHTML = bestTime;
                 }
+                //paused = true;
+                if (counter < bestGuess || bestGuess === 0){
+                    localStorage.setItem("bestGuess", counter);
+                    document.getElementById("bestGuess").innerHTML = counter;
+                    bestGuess = counter;
+                }
+                fullTime = minutes + ":" + seconds;
+                games.push({"guesses" : counter, "time" : fullTime});
+                var gamesJSON = JSON.stringify(games);
+                localStorage.setItem("games", gamesJSON);
                 
                 setTimeout(function(){
                 if (confirm("Congrats!\n\nYou have found all the matches!\n\nWould you like to start a new game?")){
@@ -83,6 +114,7 @@ function cardFlip(card){
 }
 
 function makeGame(){
+   buttonReset();
    counter = 0;
    var transition = 0;
    var backgroundImageURL;
@@ -100,6 +132,7 @@ function makeGame(){
    if (game.innerHTML == ""){
        game.classList.remove("stacked");
        loadCardBacks("cardBacks.json");
+       //Interval = setInterval(startTimer, 1000);
    }
    if(game.innerHTML !== ""){
         backgroundImageURL = game.firstChild.lastChild.style.background;
@@ -110,6 +143,8 @@ function makeGame(){
             game.addEventListener("transitionend", function(event) {
                 transition++;
                 if (transition == 1){
+                    //clearInterval(Interval);
+                    //Interval = setInterval(startTimer, 1000);
                     game.classList.remove("restack");
                     loadCardBacks("cardBacks.json");
                 }
@@ -158,3 +193,43 @@ function loadCardBacks(url){
         srvrRequest.open("GET", url, true);
         srvrRequest.send();
 }
+  
+  //Adapted from http://www.cssscript.com/a-minimal-pure-javascript-stopwatch/
+  function startTimer () {
+    buttonStop.style.display = "inline-block";
+    seconds++;
+    
+    if(seconds <= 9){
+      appendSeconds.innerHTML = "0" + seconds;
+    }
+    
+    if (seconds > 9){
+      appendSeconds.innerHTML = seconds;
+    }
+  
+    if (seconds > 59) {
+      console.log("minutes");
+      minutes++;
+      appendMinutes.innerHTML = "0" + minutes;
+      seconds = 0;
+      appendSeconds.innerHTML = "0" + 0;
+    }
+    if (minutes > 9){
+      appendMinutes.innerHTML = minutes;
+    }
+  }
+  
+function buttonReset() {
+     clearInterval(Interval);
+    minutes = "00";
+    seconds = "00";
+    appendMinutes.innerHTML = minutes;
+    appendSeconds.innerHTML = seconds;
+}
+
+function beginTimer() {
+    paused = false;
+    console.log("clicked");
+    clearInterval(Interval);
+    Interval = setInterval(startTimer, 1000);
+};
