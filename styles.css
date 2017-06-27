@@ -26,7 +26,7 @@
 
 
 /* CSS Page Styles*/
-h1{margin-bottom:0;}
+h1{margin-bottom:0;margin-top: 5px;}
 #options{
     text-align: center;
     margin: 10px auto;
@@ -34,6 +34,76 @@ h1{margin-bottom:0;}
 
 #button-stop{
   display:none;
+}
+
+#gamesPlayed{
+    display: inline-block;
+    position: absolute;
+    z-index: 5;
+    background: darkgray;
+    margin-top: -39px;
+    height: 96vh;
+    left: 0;
+    padding: 2px 30px;
+    padding-left:10px;
+    transition: left .5s ease;
+}
+
+#gamesPlayed table thead tr, #gamesTable{
+    display:block;
+}
+
+#gamesPlayed table td{
+    width: 83px;
+}
+
+#gamesTable {
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 78vh;
+}
+
+tr#noGames > td {
+    padding: 110px 20px !important;
+    font-weight: bold;
+}
+
+.bestT, .bestG {
+    font-weight:bold;
+}
+
+#gamesPlayed.closed{
+    left: -284px;
+    overflow:hidden;
+}
+
+#menuIcon{
+    font-weight: bold;
+    font-size: 30px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: black;
+    padding-top: 42vh;
+    padding-right: 3px;
+    padding-left: 3px;
+    height: 54.7vh;
+    color: white;
+}
+
+div#gamesPlayed table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+div#gamesPlayed table tr td {
+    border: 1px solid black;
+    padding: 2px 20px;
+    text-align: center;
+}
+
+div#gamesPlayed table thead tr td{
+    font-weight:bold;
 }
 
 button#makeGame {

@@ -52,6 +52,9 @@ function shuffleArray(array) {
 function cardFlip(card){
     if((minutes == 00 && seconds == 00) || paused){
         beginTimer();
+        if(!document.getElementById("gamesPlayed").classList.contains("closed")){
+           document.getElementById("menuIcon").click();
+        }
     }
     if (card.classList.contains("found") == false){
         card.classList.add("flipped");
@@ -95,11 +98,17 @@ function cardFlip(card){
                 var gamesJSON = JSON.stringify(games);
                 localStorage.setItem("games", gamesJSON);
                 
-                setTimeout(function(){
-                if (confirm("Congrats!\n\nYou have found all the matches!\n\nWould you like to start a new game?")){
-                    makeGame();
+                addGames(counter, fullTime);
+                
+                if(document.getElementById("gamesPlayed").classList.contains("closed")){
+                    document.getElementById("menuIcon").click();
                 }
-                },200);
+                
+                setTimeout(function(){
+                    if (confirm("Congrats!\n\nYou have found all the matches!\n\nWould you like to start a new game?")){
+                        makeGame();
+                    }
+                },800);
             } 
         }
         else{
@@ -114,6 +123,9 @@ function cardFlip(card){
 }
 
 function makeGame(){
+   if(!document.getElementById("gamesPlayed").classList.contains("closed")){
+      document.getElementById("menuIcon").click();
+   }
    buttonReset();
    counter = 0;
    var transition = 0;
@@ -229,7 +241,59 @@ function buttonReset() {
 
 function beginTimer() {
     paused = false;
+    buttonStop.removeAttribute("disabled");
     console.log("clicked");
     clearInterval(Interval);
     Interval = setInterval(startTimer, 1000);
 };
+
+function loadGames(obj){
+    document.getElementById("gamesTable").innerHTML = "";
+    if(obj.length === 0){
+        addGames("", "");
+    }
+    else{
+        for (var item in obj){
+            var guesses = obj[item].guesses;
+            var time = obj[item].time;
+            addGames(guesses, time);
+        }
+    }
+}
+
+function addGames(guesses, time){
+    if(guesses == "" && time == ""){
+        var newRow = document.createElement("tr");
+        newRow.setAttribute("id", "noGames");
+        var newCell = document.createElement("td");
+        newCell.setAttribute("colspan", "2");
+        var text = document.createTextNode("No Games Played Yet! Go play!");
+        newCell.appendChild(text);
+        newRow.appendChild(newCell);
+    }
+    else{
+        if (document.getElementById("noGames") !== null){
+            document.getElementById("gamesTable").innerHTML = "";
+        }
+        // Create Row
+        var newRow = document.createElement("tr");
+
+        // Create first name cell and append text
+        var newCell = document.createElement("td");
+        var gText = document.createTextNode(guesses);
+        newCell.appendChild(gText);
+        newRow.appendChild(newCell);
+
+        // Create last name cell and append text
+        var newCell2 = document.createElement("td");
+        var tText = document.createTextNode(time);
+        newCell2.appendChild(tText);
+        newRow.appendChild(newCell2);
+    }
+        // Find the table body element
+        // Append the new row before the new input row
+        var tableBody = document.getElementById("gamesTable");
+
+        // Insert in reverse order
+        tableBody.insertBefore(newRow, tableBody.firstChild);
+}
