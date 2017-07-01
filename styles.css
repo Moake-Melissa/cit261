@@ -30,6 +30,7 @@ h1{margin-bottom:0;margin-top: 5px;}
 #options{
     text-align: center;
     margin: 10px auto;
+    padding-right:25px;
 }
 
 #button-stop{
@@ -41,9 +42,10 @@ h1{margin-bottom:0;margin-top: 5px;}
     position: absolute;
     z-index: 5;
     background: darkgray;
-    margin-top: -39px;
-    height: 96vh;
+    margin-top: -40px;
+    height: 600px;
     left: 0;
+    width: 271px;
     padding: 2px 30px;
     padding-left:10px;
     transition: left .5s ease;
@@ -60,7 +62,7 @@ h1{margin-bottom:0;margin-top: 5px;}
 #gamesTable {
     overflow-x: hidden;
     overflow-y: auto;
-    height: 78vh;
+    height: 488px;
 }
 
 tr#noGames > td {
@@ -73,7 +75,7 @@ tr#noGames > td {
 }
 
 #gamesPlayed.closed{
-    left: -284px;
+    left: -288px;
     overflow:hidden;
 }
 
@@ -84,10 +86,10 @@ tr#noGames > td {
     right: 0;
     top: 0;
     background-color: black;
-    padding-top: 42vh;
+    padding-top: 302px;
     padding-right: 3px;
     padding-left: 3px;
-    height: 54.7vh;
+    height: 302px;
     color: white;
 }
 
@@ -133,10 +135,13 @@ div#game {
     display: flex;
     flex-wrap: wrap;
     width: 1013px;
+    height:556px;
+    overflow:hidden;
     text-align: center;
+    padding-left: 25px;
     margin: 0 auto;
-    -webkit-transition: width 2s, height 2s ease 2s;
-    transition: width 2s, height 2s ease 2s;
+    -webkit-transition: height 2s, width 2s;
+    transition: height 2s, width 2s;
 
 }
 
@@ -144,8 +149,8 @@ div#game {
     width: 161px;
     height: 184px;
     overflow: hidden;
-    -webkit-transition: width 2s, height 2s ease 2s;
-    transition: width 2s, height 2s ease 2s;
+    -webkit-transition: height 2s, width 2s;
+    transition: height 2s, width 2s;
 }
 
 .found{
