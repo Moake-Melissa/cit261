@@ -14,6 +14,14 @@ and open the template in the editor.
         <h1>Combo of CSS Animations, Transitions, and Transformations</h1><span>Designing, Defining, and Triggering without Custom Libraries 
         </span><br>
         <div>Here is a fun matching game I put together to use each of the three different css types.</div>
+        <div id="successModal">
+            <h2>Congrats!</h2>
+            <p>You have found all the matches! Here's how you did:</p>
+            <p id="stats"></p>
+            <p>Would you like to start a new game?</p>
+            <button onclick=" makeGame(); document.getElementById('successModal').classList.remove('show');">Yes!</button>
+            <button onclick="document.getElementById('successModal').classList.remove('show');">No</button>
+        </div>
     <div id="options">
         <button id="makeGame" onclick="makeGame();">Create new game</button><span><b>Number of guesses:</b> <span id="counter">0</span></span>&nbsp;&nbsp;<b>Timer:</b> <span id="minutes">00</span>:<span id="seconds">00</span>&nbsp;&nbsp;<button id="button-stop">Pause</button>
     </div>

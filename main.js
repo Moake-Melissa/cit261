@@ -93,6 +93,17 @@ function cardFlip(card){
                     document.getElementById("bestGuess").innerHTML = counter;
                     bestGuess = counter;
                 }
+                if (minutes < 10 && seconds < 10){
+                    minutes = "0" + minutes;
+                    seconds = "0" + seconds;
+                }
+                else if (minutes < 10 && minutes.length < 2){
+                    minutes = "0" + minutes;
+                }
+                else if (seconds < 10 && seconds.length < 2){
+                    seconds = "0" + seconds;
+                }
+                
                 fullTime = minutes + ":" + seconds;
                 games.push({"guesses" : counter, "time" : fullTime});
                 var gamesJSON = JSON.stringify(games);
@@ -105,9 +116,8 @@ function cardFlip(card){
                 }
                 
                 setTimeout(function(){
-                    if (confirm("Congrats!\n\nYou have found all the matches!\n\nWould you like to start a new game?")){
-                        makeGame();
-                    }
+                    document.getElementById("stats").innerHTML = "<b>Guesses:</b> " + counter + " &nbsp; &nbsp; <b>Time:</b> " + fullTime;
+                    document.getElementById("successModal").classList.add("show");
                 },800);
             } 
         }

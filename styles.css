@@ -108,6 +108,32 @@ div#gamesPlayed table thead tr td{
     font-weight:bold;
 }
 
+#successModal{
+    width: 410px;
+    height: 0px;
+    background-color: darkgrey;
+    top: 0;
+    position: absolute;
+    right: 0;
+    left: 0;
+    margin: auto;
+    color: black;
+    text-align: center;
+    opacity: 0;
+    z-index: 1;
+    transition: all 1s ease;
+}
+
+#successModal.show{
+    opacity: 1;
+    height: 200px;
+    z-index: 1;
+    transition: all 1s ease;
+    padding: 20px;
+    border: 3px solid black;
+    top: calc(50% - 200px/2);
+}
+
 button#makeGame {
     font-size: 1em;
     display: inline-block;
