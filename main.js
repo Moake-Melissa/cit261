@@ -114,7 +114,7 @@ function cardFlip(card){
                 if(document.getElementById("gamesPlayed").classList.contains("closed")){
                     document.getElementById("menuIcon").click();
                 }
-                
+                buttonStop.setAttribute("disabled", "disabled");
                 setTimeout(function(){
                     document.getElementById("stats").innerHTML = "<b>Guesses:</b> " + counter + " &nbsp; &nbsp; <b>Time:</b> " + fullTime;
                     document.getElementById("successModal").classList.add("show");
@@ -136,6 +136,7 @@ function makeGame(){
    if(!document.getElementById("gamesPlayed").classList.contains("closed")){
       document.getElementById("menuIcon").click();
    }
+   document.getElementById('successModal').classList.remove('show');
    buttonReset();
    counter = 0;
    var transition = 0;

@@ -91,6 +91,7 @@ tr#noGames > td {
     padding-left: 3px;
     height: 302px;
     color: white;
+    cursor: pointer;
 }
 
 div#gamesPlayed table {
