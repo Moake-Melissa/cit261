@@ -89,7 +89,7 @@ function cardFlip(card){
                 cards[7].classList.add("wiggle");
                 cards[8].classList.add("flippingY");
                 cards[9].classList.add("wiggle");
-                cards[10].classList.add("flippingY");
+                cards[10].classList.add("flippingX");
                 cards[11].classList.add("wiggle");
                 cards[12].classList.add("wiggle");
                 cards[13].classList.add("flippingY");
