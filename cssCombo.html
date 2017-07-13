@@ -39,13 +39,14 @@ and open the template in the editor.
         <script>
             window.onload = function(){
                 if (localStorage.getItem("bestGuess") === "" || localStorage.getItem("bestGuess") === null){
-                    best = 0;
-                    document.getElementById("bestGuess").innerHTML = best;
+                    bestGuess = 0;
+                    document.getElementById("bestGuess").innerHTML = bestGuess;
+                    localStorage.setItem("bestGuess", "0");
                 }
                 else{
                     best_str = localStorage.getItem("bestGuess");
-                    best = parseInt(best_str);
-                    document.getElementById("bestGuess").innerHTML = best;
+                    bestGuess = parseInt(best_str);
+                    document.getElementById("bestGuess").innerHTML = bestGuess;
                 }
                 
                 if (localStorage.getItem("bestTime") === "" || localStorage.getItem("bestTime") === null){

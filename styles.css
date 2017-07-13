@@ -68,6 +68,7 @@ h1{margin-bottom:0;margin-top: 5px;}
 tr#noGames > td {
     padding: 110px 20px !important;
     font-weight: bold;
+    width: 207px;
 }
 
 .bestT, .bestG {
@@ -266,4 +267,41 @@ div#game {
            transform: rotate(0deg);
         }
     }
+    
+    .card.flippingY > .front{
+        animation: flippingY 2s infinite linear;
+        backface-visibility: inherit;
+    }
+    
+    .card.flippingX > .front{
+        animation: flippingX 2s .5s infinite linear;
+        backface-visibility: inherit;
+    }
+    .card.wiggle > .front{
+        animation: wiggleEnd 1s linear infinite;
+    }
  
+    @keyframes flippingY {
+        100% {
+            transform: rotateY(360deg);
+        }
+    }
+    
+    @keyframes flippingX {
+        100% {
+            transform: rotateX(360deg);
+        }
+    }
+    
+    @keyframes wiggleEnd
+    {
+        0%   {
+          transform: rotate(-20deg);
+        }
+        50%  {
+          transform: rotate(20deg);
+        }
+        100%  {
+          transform: rotate(-20deg);
+        }
+    }

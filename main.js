@@ -76,22 +76,44 @@ function cardFlip(card){
 
             if(found.length == 18){
                 clearInterval(Interval);
+                
+                //ending animation start
+                var cards = document.getElementsByClassName("card");
+                cards[0].classList.add("flippingY");
+                cards[1].classList.add("flippingX");
+                cards[2].classList.add("wiggle");
+                cards[3].classList.add("flippingY");
+                cards[4].classList.add("wiggle");
+                cards[5].classList.add("flippingX");
+                cards[6].classList.add("flippingX");
+                cards[7].classList.add("wiggle");
+                cards[8].classList.add("flippingY");
+                cards[9].classList.add("wiggle");
+                cards[10].classList.add("flippingY");
+                cards[11].classList.add("wiggle");
+                cards[12].classList.add("wiggle");
+                cards[13].classList.add("flippingY");
+                cards[14].classList.add("wiggle");
+                cards[15].classList.add("flippingX");
+                cards[16].classList.add("wiggle");
+                cards[17].classList.add("flippingY");
+                //ending animation end
+                
                 time = bestTime.split(":");
-                console.log(time);
                 convertedBest = (parseInt(time[0])*60)+parseInt(time[1]);
-                console.log(convertedBest);
                 convertedTime = (minutes*60)+seconds;
-                console.log(convertedTime);
+                
                 if (convertedTime < convertedBest || convertedBest === 0){
                     bestTime = minutes + ":" + seconds;
                     localStorage.setItem("bestTime", bestTime);
                     document.getElementById("bestTime").innerHTML = bestTime;
                 }
                 //paused = true;
-                if (counter < bestGuess || bestGuess === 0){
+                if (bestGuess === 0 || counter < bestGuess){
                     localStorage.setItem("bestGuess", counter);
                     document.getElementById("bestGuess").innerHTML = counter;
                     bestGuess = counter;
+                    console.log("best Guess");
                 }
                 if (minutes < 10 && seconds < 10){
                     minutes = "0" + minutes;
@@ -231,7 +253,6 @@ function loadCardBacks(url){
     }
   
     if (seconds > 59) {
-      console.log("minutes");
       minutes++;
       appendMinutes.innerHTML = "0" + minutes;
       seconds = 0;
@@ -253,7 +274,6 @@ function buttonReset() {
 function beginTimer() {
     paused = false;
     buttonStop.removeAttribute("disabled");
-    console.log("clicked");
     clearInterval(Interval);
     Interval = setInterval(startTimer, 1000);
 };
@@ -278,8 +298,12 @@ function addGames(guesses, time){
         newRow.setAttribute("id", "noGames");
         var newCell = document.createElement("td");
         newCell.setAttribute("colspan", "2");
-        var text = document.createTextNode("No Games Played Yet! Go play!");
+        var text = document.createTextNode("No Games Played Yet!");
+        var newLine = document.createElement("br");
+        var nextLine = document.createTextNode("Go play!");
         newCell.appendChild(text);
+        newCell.appendChild(newLine);
+        newCell.appendChild(nextLine);
         newRow.appendChild(newCell);
     }
     else{
