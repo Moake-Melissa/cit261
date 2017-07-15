@@ -7,6 +7,7 @@
 	<body id="home">
 		<h1>Welcome to my CIT 261 Portfolio!</h1>
                 <p>This is where I will prove what I learn in the class.</p>
+                <div style="right: 30px; top: 30px; position: absolute;"><h1><a href="cssCombo.html">Final Application</a></h1></div>
                 <table>
                     <thead>
                         <tr>

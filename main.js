@@ -90,13 +90,13 @@ function cardFlip(card){
                 cards[8].classList.add("flippingY");
                 cards[9].classList.add("wiggle");
                 cards[10].classList.add("flippingX");
-                cards[11].classList.add("wiggle");
+                cards[11].classList.add("flippingY");
                 cards[12].classList.add("wiggle");
                 cards[13].classList.add("flippingY");
                 cards[14].classList.add("wiggle");
                 cards[15].classList.add("flippingX");
-                cards[16].classList.add("wiggle");
-                cards[17].classList.add("flippingY");
+                cards[16].classList.add("flippingY");
+                cards[17].classList.add("wiggle");
                 //ending animation end
                 
                 time = bestTime.split(":");

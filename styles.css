@@ -35,6 +35,7 @@ h1{margin-bottom:0;margin-top: 5px;}
 
 #button-stop{
   display:none;
+  cursor:pointer;
 }
 
 #gamesPlayed{
@@ -133,13 +134,14 @@ div#gamesPlayed table thead tr td{
     transition: all 1s ease;
     padding: 20px;
     border: 3px solid black;
-    top: calc(50% - 200px/2);
+    top: calc(50% - 246px/2);
 }
 
 button#makeGame {
     font-size: 1em;
     display: inline-block;
     margin-right: 20px;
+    cursor:pointer;
 }
 .card {
     width: 150px;
